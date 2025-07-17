@@ -26,10 +26,6 @@ class RobotPolicy(object):
         self.num_actions = 5
 
 
-    def reset(self):
-        # reset the environment to the initial state, the one with index 0
-        return 0, 0
-
     def reward_function(self, cube_center, i, j, sigma = .1, action = None):
 
         # we first need to define a function whihc translates the coordinates (i, j) into coordinates (x, y), assuming that they are equidistant and in the range [0, 1]
@@ -135,33 +131,6 @@ class RobotPolicy(object):
                 index = self.coord_to_state(i, j)
                 value_function[i, j] = v_estimate[index]
         
-        return policy
-    
-    def follow_policy(self, policy, robot):
-        end_reached = False
-        r, c = self.reset()
-
-        while not end_reached:
-            # r, c = self.state_to_coord(current_state)
-            action = policy[r, c]
-            dr, dc = self.actions[action]
-            
-            # we move the real robot
-            if action == 0:
-                robot.move_left()
-            elif action == 1:
-                robot.move_right()
-            elif action == 2:
-                robot.move_up()
-            elif action == 3:
-                robot.move_down()
-            elif action == 4:
-                end_reached = True  # stay in the same position
-
-            new_r, new_c = r + dr, c + dc
-
-            # Check boundaries
-            r = max(0, min(new_r, self.N_rows - 1))
-            c = max(0, min(new_c, self.N_cols - 1))
+        return policy, self.actions
                 
 

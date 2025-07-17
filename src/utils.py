@@ -14,10 +14,18 @@ The system can be controlled using the following commands, assuming a robot obje
     - `robot.rotate(angle)`   # Rotates the gripper to the specified angle in degrees (0 to 180).
     - `robot.move_z(z)`       # Moves the gripper vertically to the specified z position (normalized between 0 and 1).
     - `robot.move_xy(x, y)`   # Moves the gripper to the specified x and y position (both normalized between 0 and 1).
+    - `robot.step_right()`      # Moves the gripper one step to the right.
+    - `robot.step_left()`       # Moves the gripper one step to the left.
+    - `robot.step_forward()`    # Moves the gripper one step forward.
+    - `robot.step_backward()`   # Moves the gripper one step backward.
 2. Gripper Control:
     - `robot.gripper_open()`    # Fully opens the gripper.
     - `robot.gripper_close()`   # Fully closes the gripper.
     - `robot.move_gripper(val)` # Sets the gripper opening to a specific value, where 0 is fully closed and 1 is fully open.
+3. Advanced Movement:
+    - `robot.go_to_cube()`    # Find the cube and move the gripper to the cube's position.
+    - `robot.pick()`          # Picks up the cube at the current gripper position. We assume the gripper is already positioned above the cube. Use this function, instead of `robot.gripper_close()`, etc., to pick up the cube.
+    - `robot.place()`         # Places the cube at the current gripper position. We assume the gripper is already positioned above the desired placement location.
 
 You have to follow these rules when generating code:
 1. Carefully read and understand the user's request, focusing on identifying all required actions and their correct sequential order.
