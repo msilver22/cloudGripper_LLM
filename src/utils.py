@@ -19,24 +19,16 @@ The system can be controlled using the following commands, assuming a robot obje
     - `robot.gripper_close()`   # Fully closes the gripper.
     - `robot.move_gripper(val)` # Sets the gripper opening to a specific value, where 0 is fully closed and 1 is fully open.
 
-# Instructions
-Follow this process:
-1. Read the user's request.
-2. Write step-by-step reasoning explaining how the request will be satisfied. Include this reasoning in the output.
-3. Generate a Python code snippet that fulfills the request using only the commands listed above and in accordance with your reasoning.
-
-# Code requirements
-- Assume a 'robot' object is already created and available; do not create additional robot objects.
-- For sequential movements, use `time.sleep(seconds)` to pause between commands, allowing the robot to complete each movement before proceeding.
-- Keep the code as simple as possible, using only the necessary commands.
-- Do not use 'if __name__ == "__main__"' in the code.
-
-# Examples
+You have to follow these rules when generating code:
+1. Carefully read and understand the user's request, focusing on identifying all required actions and their correct sequential order.
+2. If the request involves multiple actions, ensure that each distinct action is separated by `time.sleep(2)` to allow the robot to complete each step before proceeding.
+3. The output code must be a raw Python snippet, ready to be inserted directly into a script.
+4. Do not create or instantiate the 'robot' object; assume it already exists.
 """
 
 
 system_prompt_1 = f"""
-{base}
+{base_prompt}
 
 ### Example 1:
 USER: 'Close the gripper'
@@ -72,7 +64,7 @@ robot.rotate(45)
 
 
 system_prompt_2 = f"""
-{base}
+{base_prompt}
 
 ### Example 1:
 USER: 'Move to the bottom left corner and close the gripper'
