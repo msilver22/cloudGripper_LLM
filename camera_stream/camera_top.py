@@ -1,8 +1,10 @@
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from client.cloudgripper_client import GripperRobot
 import time
-import sys
 import cv2
-import os
+
 
 # Get the CloudGripper API token from environment variables
 token = os.environ['CLOUDGRIPPER_TOKEN']

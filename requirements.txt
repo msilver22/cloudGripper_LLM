@@ -3,3 +3,4 @@ pybase64
 requests
 opencv-python
 groq
+dotenv
